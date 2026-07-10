@@ -6,6 +6,7 @@ import Link from "next/link";
 import { CreateMeetingButton } from "@/components/meetings/CreateMeeting";
 import GlobalSearch from "./GlobalSearch";
 import ThemeToggle from "./ThemeToggle";
+import UserMenu from "./UserMenu";
 
 export default function Topbar() {
   return (
@@ -19,8 +20,9 @@ export default function Topbar() {
       <GlobalSearch />
 
       <div className="ml-auto flex items-center gap-2">
-        <ThemeToggle />
         <CreateMeetingButton size="sm" />
+        <ThemeToggle />
+        <UserMenu />
       </div>
     </header>
   );

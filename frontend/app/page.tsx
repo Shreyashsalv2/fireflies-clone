@@ -39,9 +39,6 @@ export default function DashboardPage() {
             notes.
           </p>
         </div>
-        <div className="hidden sm:block">
-          <CreateMeetingButton />
-        </div>
       </div>
 
       <div className="mb-6">

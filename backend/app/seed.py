@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
-from sqlmodel import Session, SQLModel
+from sqlmodel import Session, SQLModel, select
 
 from . import models
 from .database import engine
@@ -315,6 +315,20 @@ def seed() -> None:
         session.commit()
 
     print(f"Seeded {len(MEETINGS)} meetings.")
+
+
+def seed_if_empty() -> None:
+    """Insert seed data only when the database has no meetings yet.
+
+    Safe to call on every startup — it never deletes existing data. This keeps the
+    demo dashboard populated on hosts with an ephemeral filesystem (e.g. Render's
+    free tier), where the SQLite file is wiped on each deploy / cold start.
+    """
+    SQLModel.metadata.create_all(engine)
+    with Session(engine) as session:
+        has_data = session.exec(select(models.Meeting)).first() is not None
+    if not has_data:
+        seed()
 
 
 if __name__ == "__main__":

@@ -184,5 +184,5 @@ The frontend defaults to `http://localhost:8000/api`; override via `frontend/.en
 ## Assumptions
 - **Single default user** — no real authentication (a placeholder account menu is shown).
 - **No real audio** — the media player is a simulated timeline driven by transcript timestamps.
-- **AI provider is Groq (Llama)**, per the build choice; summaries fall back to a local mock if the key is absent or the API fails, so creation never breaks.
+- **AI provider is Groq (Llama)**; summaries fall back to a local mock if the key is absent or the API fails, so creation never breaks.
 - Pasted transcripts without timestamps get **synthesized timings** so the player still works.

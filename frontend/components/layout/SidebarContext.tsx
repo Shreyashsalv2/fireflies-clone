@@ -10,7 +10,7 @@ import {
 } from "react";
 
 type SidebarContextValue = {
-  collapsed: boolean; // desktop focus mode (hidden on md+)
+  collapsed: boolean; // desktop rail mode (icon-only on md+)
   mobileOpen: boolean; // mobile slide-in drawer
   toggle: () => void; // breakpoint-aware: collapse on desktop, open drawer on mobile
   closeMobile: () => void;

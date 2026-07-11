@@ -15,7 +15,7 @@ function Shell({ children }: { children: React.ReactNode }) {
       <div
         className={cn(
           "flex h-full flex-col transition-[margin] duration-300 ease-in-out",
-          collapsed ? "md:ml-0" : "md:ml-60",
+          collapsed ? "md:ml-16" : "md:ml-60",
         )}
       >
         <Topbar />

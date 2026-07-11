@@ -47,11 +47,18 @@ MEETINGS: list[dict] = [
             ("Sarah Chen", 125, "Perfect. Priya, can you send the onboarding handoff to Marcus's team today? Let's reconvene next week to check progress."),
         ],
         "summary": (
-            "The team aligned on the Q3 roadmap, prioritizing the onboarding redesign ahead of the "
-            "search infrastructure rebuild. Onboarding was chosen first because it is low-cost and "
-            "directly tied to the recent four percent activation decline, which data showed concentrates "
-            "on the second onboarding screen. The search rebuild, requiring three engineers for roughly "
-            "six weeks, will begin in the second half of the quarter."
+            "The team met to finalize the Q3 roadmap so engineering could begin sprint planning the "
+            "following week. Two initiatives dominated the discussion: a long-overdue rebuild of the "
+            "search infrastructure, which Marcus flagged as blocking three other features, and a redesign "
+            "of the onboarding flow that Priya had ready for handoff. David shared data showing activation "
+            "had dropped four percent last quarter, with most of the drop-off concentrated on the second "
+            "onboarding screen, which strengthened the case for onboarding. On effort, the search rebuild "
+            "would need three engineers for roughly six weeks (five with the new hire), while onboarding "
+            "required just one engineer and Priya for about two weeks. The team decided to ship the "
+            "onboarding redesign first — it is cheaper and directly tied to activation — and to begin the "
+            "search rebuild in the second half of the quarter. David committed to an activation dashboard "
+            "to measure the impact, Marcus to a search-rebuild spec by Friday, and Priya to sending the "
+            "onboarding handoff to engineering that day, with a follow-up scheduled for the next week."
         ),
         "action_items": [
             ("Write up the search infrastructure rebuild spec and share by Friday", "Marcus Rodriguez", False),
@@ -93,11 +100,18 @@ MEETINGS: list[dict] = [
             ("Marcus Rodriguez", 104, "Great. Let's keep the incident doc updated and share the postmortem with the wider team by Thursday."),
         ],
         "summary": (
-            "The engineering team reviewed in-progress work and Tuesday's database outage. API "
-            "rate-limiting is complete and awaiting a final approval; a flaky checkout test remains under "
-            "investigation as a suspected race condition in the payment mock, with Lena pairing with Raj. "
-            "The outage — an eight-minute lock on the users table during a migration at peak traffic — was "
-            "traced to a missing statement timeout, prompting a new requirement to add timeouts to all migrations."
+            "The engineering team ran a quick standup covering in-progress work before reviewing "
+            "Tuesday's database outage. Emma reported that the API rate-limiting work is complete and in "
+            "review, needing just one more approval to merge and close out last month's abuse report, and "
+            "Marcus agreed to review it right after the call. Raj is still chasing a flaky checkout test "
+            "that fails about one in ten runs on CI but never locally, which he suspects is a race "
+            "condition in the payment mock; Lena offered to pair with him that afternoon after hitting "
+            "something similar in the notifications service. Turning to the incident, Lena explained that a "
+            "migration had locked the users table for about eight minutes during peak traffic because no "
+            "statement timeout was set, causing it to cascade. The team agreed to require statement "
+            "timeouts on all migrations and add the check to the review checklist, with Lena owning the "
+            "migration guidelines and PR template, and to share the postmortem with the wider team by "
+            "Thursday."
         ),
         "action_items": [
             ("Review and approve the API rate-limiting PR", "Marcus Rodriguez", True),
@@ -138,11 +152,19 @@ MEETINGS: list[dict] = [
             ("Sarah Chen", 114, "Wonderful. I'll send over pilot onboarding materials this week and we'll get you set up."),
         ],
         "summary": (
-            "Acme Corp, a 200-person distributed team, described fragmented meeting notes and lost action "
-            "items as their core pain points, with Zoom recordings going unused. Sarah highlighted searchable "
-            "transcripts with click-to-timestamp playback and automatic action-item extraction as direct "
-            "solutions, while noting that two-way task-tracker sync is a next-quarter roadmap item. The call "
-            "concluded with agreement to launch a pilot with Acme's operations team."
+            "Sarah ran a discovery call with John and Rebecca from Acme Corp to understand how their team "
+            "runs meetings before assessing fit. John explained that Acme is a distributed team of about "
+            "two hundred whose meeting notes are a mess — everyone takes their own and nothing is "
+            "searchable — while Rebecca said the biggest pain is action items getting lost in someone's "
+            "notebook with no follow-up. Although most calls are recorded in Zoom, the recordings simply "
+            "sit in a folder because nobody rewatches hours of video; Rebecca noted that searching across "
+            "calls for a customer's name and jumping straight to that moment would change her week. Sarah "
+            "confirmed that is exactly what the product does — searchable transcripts with "
+            "click-to-timestamp playback and automatic action-item extraction. On syncing action items to "
+            "their task tracker, she explained that integrations are on the roadmap, with extraction "
+            "available today and two-way sync coming next quarter, which Rebecca felt was fine for now. "
+            "The call ended with agreement to launch a pilot: Rebecca will pick ten of Acme's heaviest "
+            "meeting users, and Sarah will send onboarding materials that week."
         ),
         "action_items": [
             ("Select ten of Acme's heaviest meeting users for the pilot", "Rebecca Stone", False),
@@ -182,11 +204,18 @@ MEETINGS: list[dict] = [
             ("Sarah Chen", 98, "Perfect. Let's run it past five users before we hand it to engineering."),
         ],
         "summary": (
-            "The team reviewed a redesigned mobile onboarding flow that reduces five screens to three and "
-            "defers the microphone permission to a contextual, in-context prompt to reduce drop-off. Feedback "
-            "focused on making the progress indicator responsive on small devices, verifying accessibility "
-            "contrast and tap targets, and adding a skip option for power users. Alex will deliver a revised "
-            "prototype by Wednesday for a five-user usability test before engineering handoff."
+            "Alex walked the team through a redesigned mobile onboarding flow aimed at cutting it from "
+            "five screens to three and getting users to their first value faster. Priya liked that the "
+            "value proposition now sits above the sign-up form, and Alex explained that the old upfront "
+            "permissions screen was replaced with a contextual prompt that only requests microphone access "
+            "when a user starts their first recording — which Sarah welcomed, since upfront permission "
+            "requests had been a major drop-off point. The main feedback was to make the top progress "
+            "indicator responsive (Alex will switch it to a dot indicator that scales down on narrow "
+            "screens) and to double-check accessibility, where tap targets already meet the "
+            "forty-four-pixel minimum but Alex will verify contrast on the secondary buttons. Priya also "
+            "asked for a skip option on the third screen for power users, which Alex agreed to add as a "
+            "subtle skip link. Alex committed to a revised prototype by Wednesday, and Sarah asked to run "
+            "it past five users before handing it to engineering."
         ),
         "action_items": [
             ("Replace the progress bar with a responsive dot indicator", "Alex Nguyen", False),
@@ -227,11 +256,16 @@ MEETINGS: list[dict] = [
             ("Olivia Brooks", 93, "Let's meet again next week once we have the outlines and the landing page brief. Great start, everyone."),
         ],
         "summary": (
-            "The team kicked off a six-week fall launch campaign spanning content, paid, and events. Paid "
-            "strategy will shift budget toward LinkedIn based on strong B2B conversion, while content will "
-            "center on customer success stories, potentially featuring the Acme pilot. The group agreed to "
-            "refresh the stale landing page around the search and action-item features and to run a virtual "
-            "launch event to reach the full customer base."
+            "Olivia kicked off planning for the six-week fall launch campaign, spanning content, paid, and "
+            "events. On paid, Tom proposed shifting budget toward LinkedIn, where B2B conversion last "
+            "quarter was double that of other channels. For content, Nina wanted to build the campaign "
+            "around customer success stories and suggested the Acme pilot as a potential case study, and "
+            "Olivia asked her to draft outlines for three case studies by the end of the week. The team "
+            "also agreed the landing page — untouched since spring and now stale — needs a refresh, so Tom "
+            "will work with design on a new page focused on the search and action-item features and send a "
+            "brief by Monday. On the launch event, Olivia confirmed it would be virtual to reach the whole "
+            "customer base and would confirm the budget with finance and share it Thursday. They agreed to "
+            "reconvene the following week once the case-study outlines and landing-page brief were ready."
         ),
         "action_items": [
             ("Draft outlines for three customer case studies by end of week", "Nina Kapoor", False),

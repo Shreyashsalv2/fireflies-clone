@@ -20,7 +20,7 @@ _SYSTEM_PROMPT = (
     "You are an expert meeting assistant. Given a meeting transcript, produce a "
     "concise, well-structured summary. Respond ONLY with a JSON object of this form:\n"
     "{\n"
-    '  "overview": "2-4 sentence narrative summary of the meeting",\n'
+    '  "overview": "a detailed 5-8 sentence narrative summary of the meeting",\n'
     '  "action_items": [{"text": "clear task", "assignee": "name or null"}],\n'
     '  "topics": [{"title": "short topic/chapter title"}]\n'
     "}\n"
@@ -126,7 +126,7 @@ def _sentences(transcript: str) -> list[str]:
 
 def _mock_insights(title: str, transcript: str) -> dict:
     sentences = _sentences(transcript)
-    overview = " ".join(sentences[:3]) or f"Summary of the meeting '{title}'."
+    overview = " ".join(sentences[:6]) or f"Summary of the meeting '{title}'."
 
     intent_kw = ("will ", "need to", "should ", "let's", "action", "follow up",
                  "follow-up", "to-do", "todo", "next step", "by tomorrow", "by next")

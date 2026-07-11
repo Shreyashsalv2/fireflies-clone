@@ -19,7 +19,7 @@ function Shell({ children }: { children: React.ReactNode }) {
         )}
       >
         <Topbar />
-        <main className="scroll-slim flex-1 overflow-y-auto">{children}</main>
+        <main className="app-glow scroll-slim flex-1 overflow-y-auto">{children}</main>
       </div>
     </>
   );

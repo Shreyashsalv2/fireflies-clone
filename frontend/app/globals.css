@@ -14,6 +14,7 @@
   --brand-strong: #5a34f0;
   --brand-soft: #efeaff;
   --brand-ink: #ffffff;
+  --glow: rgba(109, 74, 255, 0.1);
 }
 
 .dark {
@@ -27,6 +28,7 @@
   --brand-strong: #7c5cff;
   --brand-soft: #241f3d;
   --brand-ink: #ffffff;
+  --glow: rgba(146, 123, 255, 0.14);
 }
 
 @theme inline {
@@ -55,6 +57,13 @@ body {
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Subtle violet top-glow behind the main content area */
+.app-glow {
+  background:
+    radial-gradient(120% 55% at 50% 0%, var(--glow) 0%, transparent 70%),
+    var(--canvas);
 }
 
 /* Thin, theme-aware scrollbars for panels */

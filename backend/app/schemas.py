@@ -168,3 +168,18 @@ class SearchResults(BaseModel):
     query: str
     count: int
     results: list[SearchMatch]
+
+
+# --- Chat -------------------------------------------------------------------
+class ChatMessage(BaseModel):
+    role: str  # "user" | "assistant"
+    content: str
+
+
+class ChatRequest(BaseModel):
+    question: str
+    history: Optional[list[ChatMessage]] = None
+
+
+class ChatResponse(BaseModel):
+    answer: str

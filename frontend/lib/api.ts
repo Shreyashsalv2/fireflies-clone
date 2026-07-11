@@ -87,6 +87,16 @@ export const api = {
 
   search: (q: string) => request<SearchResults>(`/search?q=${encodeURIComponent(q)}`),
 
+  chatWithMeeting: (
+    id: number,
+    question: string,
+    history: { role: string; content: string }[] = [],
+  ) =>
+    request<{ answer: string }>(`/meetings/${id}/chat`, {
+      method: "POST",
+      body: JSON.stringify({ question, history }),
+    }),
+
   exportUrl: (id: number, format: "md" | "txt") =>
     `${API_BASE}/meetings/${id}/export?format=${format}`,
 };

@@ -154,3 +154,19 @@ def regenerate_summary(meeting_id: int, session: Session = Depends(get_session))
     session.commit()
     session.refresh(meeting)
     return meeting
+
+
+@router.post("/{meeting_id}/chat", response_model=schemas.ChatResponse)
+def chat_about_meeting(
+    meeting_id: int,
+    payload: schemas.ChatRequest,
+    session: Session = Depends(get_session),
+):
+    meeting = _get_or_404(session, meeting_id)
+    if not payload.question.strip():
+        raise HTTPException(status_code=422, detail="Question cannot be empty")
+    history = [{"role": m.role, "content": m.content} for m in (payload.history or [])]
+    answer = groq_service.chat_with_meeting(
+        crud.transcript_as_text(meeting), payload.question, history
+    )
+    return schemas.ChatResponse(answer=answer)

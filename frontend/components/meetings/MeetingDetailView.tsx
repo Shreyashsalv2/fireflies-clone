@@ -20,6 +20,7 @@ import { formatDate, formatDuration } from "@/lib/format";
 import { useDeleteMeeting, useMeeting } from "@/lib/hooks";
 
 import { EditMeetingModal } from "./EditMeetingModal";
+import { MeetingChat } from "./MeetingChat";
 import { MediaPlayer } from "./MediaPlayer";
 import { SummaryPanel } from "./SummaryPanel";
 import { TranscriptPanel } from "./TranscriptPanel";
@@ -229,6 +230,8 @@ export default function MeetingDetailView({
         onClose={() => setEditOpen(false)}
         meeting={meeting}
       />
+
+      <MeetingChat meetingId={meeting.id} />
     </div>
   );
 }

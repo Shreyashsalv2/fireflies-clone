@@ -48,6 +48,52 @@ def generate_meeting_insights(title: str, transcript: str) -> dict:
     return _mock_insights(title, transcript)
 
 
+_CHAT_SYSTEM_PROMPT = (
+    "You are a helpful assistant answering questions about ONE meeting, using ONLY the meeting "
+    "transcript provided below as your source of truth.\n"
+    "- Answer strictly from the transcript; do not use outside knowledge or invent details.\n"
+    "- If the transcript does not contain the answer, say you don't know based on this meeting.\n"
+    "- Be concise and conversational; reference speakers when it helps."
+)
+
+
+def chat_with_meeting(
+    transcript: str, question: str, history: list[dict] | None = None
+) -> str:
+    """Answer a question grounded strictly in a single meeting's transcript."""
+    if not settings.groq_api_key:
+        return "The chat assistant isn't available right now (no AI key is configured)."
+    try:
+        from groq import Groq
+
+        transcript = transcript.strip()
+        if len(transcript) > 14000:
+            transcript = transcript[:14000] + "\n...[truncated]"
+
+        messages = [
+            {"role": "system", "content": f"{_CHAT_SYSTEM_PROMPT}\n\nTranscript:\n{transcript}"}
+        ]
+        for turn in (history or [])[-8:]:
+            role = turn.get("role")
+            content = str(turn.get("content", "")).strip()
+            if role in ("user", "assistant") and content:
+                messages.append({"role": role, "content": content})
+        messages.append({"role": "user", "content": question.strip()})
+
+        client = Groq(api_key=settings.groq_api_key)
+        response = client.chat.completions.create(
+            model=settings.groq_model,
+            messages=messages,
+            temperature=0.2,
+            max_tokens=500,
+        )
+        answer = (response.choices[0].message.content or "").strip()
+        return answer or "I'm not sure how to answer that from this meeting."
+    except Exception as exc:  # noqa: BLE001 - never crash the endpoint
+        logger.warning("Groq chat failed: %s", exc)
+        return "Sorry, I couldn't reach the AI service just now. Please try again."
+
+
 # --- Groq -------------------------------------------------------------------
 def _build_user_prompt(title: str, transcript: str, max_chars: int = 12000) -> str:
     transcript = transcript.strip()

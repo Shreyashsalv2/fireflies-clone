@@ -199,7 +199,7 @@ export default function MeetingDetailView({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:min-h-0 lg:flex-1 lg:grid-cols-[380px_minmax(0,1fr)]">
+      <div className="grid grid-cols-1 gap-6 lg:min-h-0 lg:flex-1 lg:grid-cols-[480px_minmax(0,1fr)]">
         <div className="scroll-slim order-2 lg:order-1 lg:min-h-0 lg:overflow-y-auto">
           <SummaryPanel meeting={meeting} onSeekTopic={(t) => seekTo(t, true)} />
         </div>

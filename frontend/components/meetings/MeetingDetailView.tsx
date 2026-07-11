@@ -199,8 +199,11 @@ export default function MeetingDetailView({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
-        <div className="space-y-4">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
+        <div className="order-2 lg:order-1">
+          <SummaryPanel meeting={meeting} onSeekTopic={(t) => seekTo(t, true)} />
+        </div>
+        <div className="order-1 space-y-4 lg:order-2">
           <MediaPlayer
             duration={duration}
             currentTime={currentTime}
@@ -214,9 +217,6 @@ export default function MeetingDetailView({
             isPlaying={isPlaying}
             onSeek={seekTo}
           />
-        </div>
-        <div>
-          <SummaryPanel meeting={meeting} onSeekTopic={(t) => seekTo(t, true)} />
         </div>
       </div>
 

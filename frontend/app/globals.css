@@ -14,7 +14,7 @@
   --brand-strong: #5a34f0;
   --brand-soft: #efeaff;
   --brand-ink: #ffffff;
-  --glow: rgba(109, 74, 255, 0.1);
+  --top-gradient: linear-gradient(to right, #dce9f9 0%, #eaf2fc 30%, #fff5ef 70%, #feefe5 100%);
 }
 
 .dark {
@@ -28,7 +28,7 @@
   --brand-strong: #7c5cff;
   --brand-soft: #241f3d;
   --brand-ink: #ffffff;
-  --glow: rgba(146, 123, 255, 0.14);
+  --top-gradient: linear-gradient(to right, #16203a 0%, #12182a 35%, #1e1714 65%, #281c16 100%);
 }
 
 @theme inline {
@@ -59,10 +59,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Subtle violet top-glow behind the main content area */
+/* Soft blue -> peach gradient across the top, fading into the canvas going down */
 .app-glow {
   background:
-    radial-gradient(120% 55% at 50% 0%, var(--glow) 0%, transparent 70%),
+    linear-gradient(to bottom, transparent 0%, transparent 24%, var(--canvas) 64%),
+    var(--top-gradient),
     var(--canvas);
 }
 

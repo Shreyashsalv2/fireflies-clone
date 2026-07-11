@@ -56,8 +56,8 @@ export function TranscriptPanel({
   }
 
   return (
-    <div className="rounded-2xl border border-line bg-card">
-      <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
+    <div className="flex flex-col rounded-2xl border border-line bg-card lg:h-full">
+      <div className="flex shrink-0 items-center justify-between gap-3 border-b border-line px-4 py-3">
         <h2 className="text-sm font-semibold text-ink">Transcript</h2>
         <div className="relative flex items-center">
           <Search
@@ -103,7 +103,7 @@ export function TranscriptPanel({
         </div>
       </div>
 
-      <div className="scroll-slim max-h-[68vh] space-y-0.5 overflow-y-auto p-2">
+      <div className="scroll-slim max-h-[68vh] space-y-0.5 overflow-y-auto p-2 lg:max-h-none lg:min-h-0 lg:flex-1">
         {segments.map((s, i) => (
           <TranscriptLine
             key={s.id}

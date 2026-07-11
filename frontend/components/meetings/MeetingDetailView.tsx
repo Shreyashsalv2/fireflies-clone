@@ -123,15 +123,15 @@ export default function MeetingDetailView({
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-6 md:px-8">
+    <div className="mx-auto max-w-6xl px-4 py-6 md:px-8 lg:flex lg:h-full lg:flex-col">
       <button
         onClick={() => router.push("/")}
-        className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted transition hover:text-ink"
+        className="mb-4 inline-flex shrink-0 items-center gap-1.5 text-sm text-muted transition hover:text-ink"
       >
         <ArrowLeft size={16} /> Meetings
       </button>
 
-      <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+      <div className="mb-6 flex shrink-0 flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div className="min-w-0">
           <h1 className="text-2xl font-semibold tracking-tight text-ink">
             {meeting.title}
@@ -199,24 +199,28 @@ export default function MeetingDetailView({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
-        <div className="order-2 lg:order-1">
+      <div className="grid grid-cols-1 gap-6 lg:min-h-0 lg:flex-1 lg:grid-cols-[380px_minmax(0,1fr)]">
+        <div className="scroll-slim order-2 lg:order-1 lg:min-h-0 lg:overflow-y-auto">
           <SummaryPanel meeting={meeting} onSeekTopic={(t) => seekTo(t, true)} />
         </div>
-        <div className="order-1 space-y-4 lg:order-2">
-          <MediaPlayer
-            duration={duration}
-            currentTime={currentTime}
-            isPlaying={isPlaying}
-            onSeek={(t) => seekTo(t)}
-            onPlayPause={() => setIsPlaying((p) => !p)}
-          />
-          <TranscriptPanel
-            segments={segments}
-            activeIndex={activeIndex}
-            isPlaying={isPlaying}
-            onSeek={seekTo}
-          />
+        <div className="order-1 flex flex-col gap-4 lg:order-2 lg:min-h-0">
+          <div className="lg:shrink-0">
+            <MediaPlayer
+              duration={duration}
+              currentTime={currentTime}
+              isPlaying={isPlaying}
+              onSeek={(t) => seekTo(t)}
+              onPlayPause={() => setIsPlaying((p) => !p)}
+            />
+          </div>
+          <div className="lg:flex lg:min-h-0 lg:flex-1">
+            <TranscriptPanel
+              segments={segments}
+              activeIndex={activeIndex}
+              isPlaying={isPlaying}
+              onSeek={seekTo}
+            />
+          </div>
         </div>
       </div>
 

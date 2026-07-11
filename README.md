@@ -35,6 +35,9 @@ no API key set.
   details, delete it, and add / edit / complete / delete action items. Everything persists.
 
 **Extras I added on top:**
+- **Ask about this meeting** — a chat widget on each meeting page that answers questions grounded in that
+  meeting's transcript, and says "I don't know" when the answer isn't in it. It reuses the Groq key
+  server-side only (the browser never sees it) and is ephemeral — nothing is stored.
 - A global search page across every meeting (title, participants, summary, and transcript).
 - Export a meeting's transcript + summary to **Markdown** or **plain text**.
 - **Dark mode** (remembered between visits), a **collapsible sidebar** (a focus-mode toggle on desktop and a
@@ -131,6 +134,7 @@ endpoints directly.
 | PATCH | `/meetings/{id}` | Edit title / description / participants / tags |
 | DELETE | `/meetings/{id}` | Delete a meeting |
 | POST | `/meetings/{id}/generate-summary` | Regenerate the summary / action items / topics |
+| POST | `/meetings/{id}/chat` | Ask a transcript-grounded question about the meeting |
 | POST | `/meetings/{id}/action-items` | Add an action item |
 | PATCH | `/action-items/{id}` | Edit / complete an action item |
 | DELETE | `/action-items/{id}` | Delete an action item |
